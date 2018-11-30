@@ -24,7 +24,6 @@ class BucketItemCell: UITableViewCell
         // Configure the view for the selected state
     }
     
-
     @IBOutlet weak var bucketItemSymbol: UILabel!
     @IBOutlet weak var bucketItemText: UILabel!
     @IBOutlet weak var bucketItemAuthor: UILabel!
@@ -42,7 +41,30 @@ class BucketItemCell: UITableViewCell
         let emojiStart = 0x1F601
         let emojiEnd = 0x1F64F
         let symbolStart = 0x1F680
-        let symbol
+        let symbolEnd = 0x1F6C5
+        
+        let emojiRange = 79
+        let symbolRange = 70
+        
+        let ascii = emojiStart +
+            Int(arc4random_uniform(UInt32(emojiRange)))
+        let emoji = UnicodeScalar(ascii)?.description
+        return emoji!
     }
     
+    private func updateCellView() -> Void
+    {
+        if(currentBucketItem != nil)
+        {
+            bucketItemAuthor.text = currentBucketItem.itemAuthor
+            bucketItemText.text = currentBucketItem.itemContents
+        }
+        else
+        {
+            bucketItemAuthor.text = "Author goes here"
+            bucketItemText.text = "Bucket item contents here"
+        }
+        
+        bucketItemSymbol.text = randomEmoji()
+    }
 }
