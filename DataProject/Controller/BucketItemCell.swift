@@ -1,4 +1,3 @@
-//
 //  BucketItemCell.swift
 //  DataProject
 //
